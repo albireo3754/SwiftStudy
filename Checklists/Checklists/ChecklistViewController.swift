@@ -7,7 +7,23 @@
 
 import UIKit
 
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController, AddItemTableViewControllerDelegate {
+    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController) {
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem) {
+        
+        let newRowIndex = items.count
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Table View Data Source
     var items = [ChecklistItem]()
     
@@ -18,6 +34,14 @@ class ChecklistViewController: UITableViewController {
             items[i].text = "\(i)"
         }
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let controller = segue.destination as! AddItemTableViewController
+            controller.delegate = self
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,16 +73,6 @@ class ChecklistViewController: UITableViewController {
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
-    }
-    @IBAction func addItem(_ sender: UIBarButtonItem) {
-        let newRowIndex = items.count
-        let item = ChecklistItem()
-        item.text = "hi new text"
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
     func configureCheckmark(for cell: UITableViewCell, at indexPath: IndexPath) {

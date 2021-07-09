@@ -7,10 +7,20 @@
 
 import UIKit
 
+protocol AddItemTableViewControllerDelegate: AnyObject {
+    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
+    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+
+    
+}
+
+
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    weak var delegate: AddItemTableViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
@@ -44,21 +54,24 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     }
 
     @IBAction func cancel() {
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        delegate?.addItemTableViewControllerDidCancel(self)
     }
     
+    
     @IBAction func done() {
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        let item = ChecklistItem()
+        item.text = textField.text!
+        
+//        checklistViewController.add(item)
+        delegate?.addItemTableViewController(self, didFinishAdding: item)
     }
     
     // MARK: - Text Field Delegates
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let oldText = textField.text!
-        print(oldText)
         let stringRange = Range(range, in: oldText)!
-        print(stringRange)
-        print(1...5)
-        print(string)
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
         
 //        let newText = oldText + string
