@@ -10,7 +10,7 @@ import UIKit
 protocol AddItemTableViewControllerDelegate: AnyObject {
     func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
     func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
-
+    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishEditing item: ChecklistItem)
     
 }
 
@@ -20,12 +20,18 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     weak var delegate: AddItemTableViewControllerDelegate?
+    var itemToEdit: ChecklistItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         textField.becomeFirstResponder()
         doneBarButton.isEnabled = false
+        if let item = itemToEdit {
+            title = "Edit Item"
+            textField.text = item.text
+            doneBarButton.isEnabled = true
+            }
         }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,35 +43,26 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    // MARK: - Table view data source
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
     // MARK: - Table View Delegates
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
 
     @IBAction func cancel() {
-//        navigationController?.popViewController(animated: true)
         delegate?.addItemTableViewControllerDidCancel(self)
     }
     
     
     @IBAction func done() {
-//        navigationController?.popViewController(animated: true)
-        let item = ChecklistItem()
-        item.text = textField.text!
-        
-//        checklistViewController.add(item)
-        delegate?.addItemTableViewController(self, didFinishAdding: item)
+        if let item = itemToEdit {
+            item.text = textField.text!
+            delegate?.addItemTableViewController(self, didFinishEditing: item)
+        } else {
+            let item = ChecklistItem()
+            item.text = textField.text!
+            delegate?.addItemTableViewController(self, didFinishAdding: item)
+        }
     }
     
     // MARK: - Text Field Delegates
@@ -73,14 +70,6 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         let oldText = textField.text!
         let stringRange = Range(range, in: oldText)!
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
-        
-//        let newText = oldText + string
-//        print(newText)
-//        if newText.isEmpty {
-//            doneBarButton.isEnabled = false
-//        } else {
-//            doneBarButton.isEnabled = true
-//        }
         doneBarButton.isEnabled = !newText.isEmpty
         return true
     }

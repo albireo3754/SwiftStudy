@@ -7,6 +7,8 @@
 
 import UIKit
 
+// TODO: - 클릭을 했을 때, 정확하게 체크박스 표현이 잘 되지 않는 버그가 있음
+
 class ChecklistViewController: UITableViewController, AddItemTableViewControllerDelegate {
     func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController) {
         
@@ -23,6 +25,16 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
     }
+    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishEditing item: ChecklistItem) {
+        if let index = items.firstIndex(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                configureText(for: cell, with: item)
+            }
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
     
     // MARK: - Table View Data Source
     var items = [ChecklistItem]()
@@ -41,6 +53,12 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
         if segue.identifier == "AddItem" {
             let controller = segue.destination as! AddItemTableViewController
             controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+            let controller = segue.destination as! AddItemTableViewController
+            controller.delegate = self
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.itemToEdit = items[indexPath.row]
+            }
         }
     }
     
@@ -49,11 +67,10 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
-        let label = cell.viewWithTag(30) as! UILabel
         let item = items[indexPath.row]
-        label.text = item.text
         item.checked.toggle()
-        configureCheckmark(for: cell, at: indexPath)
+        configureText(for: cell, with: item)
+        configureCheckmark(for: cell, with: item)
         return cell
     }
     // MARK: - Table View Delegate
@@ -75,13 +92,17 @@ class ChecklistViewController: UITableViewController, AddItemTableViewController
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     
-    func configureCheckmark(for cell: UITableViewCell, at indexPath: IndexPath) {
-        let item = items[indexPath.row]
+    func configureText(for cell: UITableViewCell, with item:ChecklistItem) {
+        let label = cell.viewWithTag(30) as! UILabel
+        label.text = item.text
+    }
+    
+    func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
+        let label = cell.viewWithTag(1005) as! UILabel
         if item.checked {
-//            cell.accessoryType = UITableViewCell.AccessoryType.checkmark 아래와 같음
-            cell.accessoryType = .checkmark
+            label.text = "√"
         } else {
-            cell.accessoryType = .none
+            label.text = ""
         }
     }
     
