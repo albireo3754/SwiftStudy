@@ -7,19 +7,19 @@
 
 import UIKit
 
-protocol AddItemTableViewControllerDelegate: AnyObject {
-    func addItemTableViewControllerDidCancel(_ controller: AddItemTableViewController)
-    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
-    func addItemTableViewController(_ controller: AddItemTableViewController, didFinishEditing item: ChecklistItem)
+protocol AddItemViewController: AnyObject {
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
     
 }
 
 
-class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
+class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    weak var delegate: AddItemTableViewControllerDelegate?
+    weak var delegate: AddItemViewController?
     var itemToEdit: ChecklistItem?
     
     override func viewDidLoad() {
@@ -50,18 +50,18 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     }
 
     @IBAction func cancel() {
-        delegate?.addItemTableViewControllerDidCancel(self)
+        delegate?.addItemViewControllerDidCancel(self)
     }
     
     
     @IBAction func done() {
         if let item = itemToEdit {
             item.text = textField.text!
-            delegate?.addItemTableViewController(self, didFinishEditing: item)
+            delegate?.addItemViewController(self, didFinishEditing: item)
         } else {
             let item = ChecklistItem()
             item.text = textField.text!
-            delegate?.addItemTableViewController(self, didFinishAdding: item)
+            delegate?.addItemViewController(self, didFinishAdding: item)
         }
     }
     
