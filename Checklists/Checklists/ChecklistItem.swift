@@ -9,5 +9,5 @@ import Foundation
 
 class ChecklistItem: NSObject, Codable {
     var text = ""
-    var checked = true
+    var checked = false
 }
