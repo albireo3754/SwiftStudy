@@ -9,7 +9,7 @@ import UIKit
 
 // TODO: - 클릭을 했을 때, 정확하게 체크박스 표현이 잘 되지 않는 버그가 있음
 
-class ChecklistViewController: UITableViewController, AddItemViewController {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate{
     func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
         
         navigationController?.popViewController(animated: true)
