@@ -10,12 +10,12 @@ import UIKit
 // TODO: - 클릭을 했을 때, 정확하게 체크박스 표현이 잘 되지 않는 버그가 있음
 
 class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate{
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+    func itemDetailViewControllerDidCancel(_ controller: AddItemViewController) {
         
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+    func itemDetailViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
         
         let newRowIndex = items.count
         items.append(item)
@@ -25,7 +25,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
     }
-    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem) {
+    func itemDetailViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem) {
         if let index = items.firstIndex(of: item) {
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) {

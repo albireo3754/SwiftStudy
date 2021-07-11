@@ -8,9 +8,9 @@
 import UIKit
 
 protocol AddItemViewControllerDelegate: AnyObject {
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
-    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
+    func itemDetailViewControllerDidCancel(_ controller: AddItemViewController)
+    func itemDetailViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+    func itemDetailViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
     
 }
 
@@ -50,18 +50,18 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     }
 
     @IBAction func cancel() {
-        delegate?.addItemViewControllerDidCancel(self)
+        delegate?.itemDetailViewControllerDidCancel(self)
     }
     
     
     @IBAction func done() {
         if let item = itemToEdit {
             item.text = textField.text!
-            delegate?.addItemViewController(self, didFinishEditing: item)
+            delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
             let item = ChecklistItem()
             item.text = textField.text!
-            delegate?.addItemViewController(self, didFinishAdding: item)
+            delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
     }
     
