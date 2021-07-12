@@ -9,6 +9,8 @@ import UIKit
 
 
 class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate{
+    var checklist: Checklist!
+    
     func itemDetailViewControllerDidCancel(_ controller: AddItemViewController) {
         
         navigationController?.popViewController(animated: true)
@@ -43,6 +45,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
+        title = checklist.name
         loadChecklistItems()
     }
     

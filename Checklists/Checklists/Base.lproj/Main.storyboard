@@ -82,7 +82,7 @@
                             <outlet property="delegate" destination="at8-Ff-rTl" id="gT2-S1-KzQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="&quot;제목&quot;" id="4xI-qX-cbT">
+                    <navigationItem key="navigationItem" title="Checklist" id="4xI-qX-cbT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bsE-eY-eZX">
                             <connections>
                                 <segue destination="RRN-ZF-Le2" kind="show" identifier="AddItem" id="voE-Ul-mGE"/>

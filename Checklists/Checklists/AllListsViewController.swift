@@ -9,15 +9,36 @@ import UIKit
 
 class AllListsViewController: UITableViewController {
     let cellIdentifier = "ChecklistCell"
+    var lists = [Checklist]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        var list = Checklist(name: "Study")
+        lists.append(list)
+
+        list = Checklist(name: "Groceries")
+        lists.append(list)
+
+        list = Checklist(name: "Cool Apps")
+        lists.append(list)
+
+        list = Checklist(name: "To Do")
+        lists.append(list)
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowChecklist" {
+            let controller = segue.destination as! ChecklistViewController
+            controller.checklist = sender as? Checklist
+        }
     }
 
     // MARK: - Table view data source
@@ -29,19 +50,22 @@ class AllListsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return lists.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel!.text = "List \(indexPath.row)"
+        cell.textLabel!.text = lists[indexPath.row].name
+        print(indexPath)
+        cell.accessoryType = .detailDisclosureButton
         // Configure the cell...
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowChecklist", sender: nil)
+        let checklist = lists[indexPath.row]
+        performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
     /*
     // Override to support conditional editing of the table view.
