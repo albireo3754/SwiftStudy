@@ -31,14 +31,86 @@
                             <outlet property="delegate" destination="daw-gD-Lm6" id="Dpq-7n-B8x"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Checklists" id="uiG-xD-rWt"/>
+                    <navigationItem key="navigationItem" title="Checklists" id="uiG-xD-rWt">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="hhU-Ui-EhP">
+                            <connections>
+                                <segue destination="bsf-UM-5pT" kind="show" identifier="AddChecklist" id="PXb-U3-c0d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="at8-Ff-rTl" kind="show" identifier="ShowChecklist" id="f9a-AA-w3d"/>
+                        <segue destination="bsf-UM-5pT" kind="show" id="Fhi-8d-2eM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhy-hv-ghL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="568" y="-615"/>
+        </scene>
+        <!--Add Checklist-->
+        <scene sceneID="1fU-NX-w0P">
+            <objects>
+                <tableViewController title="Add Checklist" id="bsf-UM-5pT" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0p1-Pe-iMl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Ti9-iG-dWB">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2SQ-w4-iJI">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2SQ-w4-iJI" id="qnQ-bo-Zoh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the List" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dM9-X9-SNM">
+                                                    <rect key="frame" x="20" y="4" width="374" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="bsf-UM-5pT" id="rAv-Nt-Phb"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="bsf-UM-5pT" id="TWc-OK-Qh1"/>
+                            <outlet property="delegate" destination="bsf-UM-5pT" id="Tgh-Pu-bfD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Checklist" largeTitleDisplayMode="never" id="9PS-4Q-qFe">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Ppa-7X-D3a">
+                            <connections>
+                                <action selector="cancel" destination="bsf-UM-5pT" id="2NS-5w-HFJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="P4t-fX-QXx">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="lHz-Au-Tto">
+                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Done"/>
+                                <connections>
+                                    <action selector="cancel" destination="bsf-UM-5pT" eventType="touchUpInside" id="YVF-gI-Gzw"/>
+                                    <action selector="done" destination="bsf-UM-5pT" eventType="touchUpInside" id="To7-8V-vl8"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="dM9-X9-SNM" id="N02-mY-lMH"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ngx-YO-HJC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343.4782608695652" y="-609.375"/>
         </scene>
         <!--Checklists-->
         <scene sceneID="8Se-15-Hxi">
@@ -164,7 +236,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r6j-w6-hEx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1325.625" y="41.197183098591552"/>
+            <point key="canvasLocation" x="1324.6376811594205" y="40.848214285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mnO-pw-mIM">
@@ -187,6 +259,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pTZ-3f-eZw"/>
+        <segue reference="Fhi-8d-2eM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

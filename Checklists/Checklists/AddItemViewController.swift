@@ -11,7 +11,6 @@ protocol AddItemViewControllerDelegate: AnyObject {
     func itemDetailViewControllerDidCancel(_ controller: AddItemViewController)
     func itemDetailViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
     func itemDetailViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
-    
 }
 
 
