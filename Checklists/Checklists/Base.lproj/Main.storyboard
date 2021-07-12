@@ -50,7 +50,7 @@
         <!--Add Checklist-->
         <scene sceneID="1fU-NX-w0P">
             <objects>
-                <tableViewController title="Add Checklist" id="bsf-UM-5pT" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailViewController" title="Add Checklist" id="bsf-UM-5pT" customClass="ListDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="0p1-Pe-iMl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,6 +105,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="P4t-fX-QXx" id="lv2-lH-uo8"/>
                         <outlet property="textField" destination="dM9-X9-SNM" id="N02-mY-lMH"/>
                     </connections>
                 </tableViewController>
@@ -145,7 +146,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="RRN-ZF-Le2" kind="show" identifier="EditItem" trigger="accessoryAction" id="pTZ-3f-eZw"/>
+                                    <segue destination="RRN-ZF-Le2" kind="show" identifier="EditItem" trigger="accessoryAction" id="6BS-3c-kVk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -258,7 +259,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pTZ-3f-eZw"/>
+        <segue reference="6BS-3c-kVk"/>
         <segue reference="Fhi-8d-2eM"/>
     </inferredMetricsTieBreakers>
     <resources>
