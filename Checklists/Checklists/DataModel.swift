@@ -9,9 +9,19 @@ import Foundation
 
 class DataModel {
     var lists = [Checklist]()
-
+    var indexOfSelectedChecklist: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "ChecklistItem")
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: "ChecklistItem")
+        }
+        
+    }
     init() {
         loadChecklists()
+        registerDefaults()
     }
     
     func documentsDirectory() -> URL {
@@ -43,5 +53,10 @@ class DataModel {
                 print("Error decoding item array: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func registerDefaults() {
+        let dictionary = ["ChecklistsIndex" : -1]
+        UserDefaults.standard.register(defaults: dictionary)
     }
 }

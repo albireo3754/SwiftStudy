@@ -45,6 +45,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
+        print(checklist)
         title = checklist.name
     }
     
