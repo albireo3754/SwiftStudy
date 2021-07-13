@@ -70,19 +70,51 @@
 			children = (
 				DD425B692695C63A006DBFCA /* AppDelegate.swift */,
 				DD425B6B2695C63A006DBFCA /* SceneDelegate.swift */,
+				DDA72DEC269DAF31002C598E /* DataModels */,
+				DDA72DED269DAF58002C598E /* ViewControllers */,
+				DDA72DEE269DAF78002C598E /* Resources */,
+				DD425B772695C63B006DBFCA /* Info.plist */,
+				DDA72DEB269DAF21002C598E /* New Group */,
+			);
+			path = Checklists;
+			sourceTree = "<group>";
+		};
+		DDA72DEB269DAF21002C598E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		DDA72DEC269DAF31002C598E /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
 				DDA72DE9269C5752002C598E /* DataModel.swift */,
+				DD11C62C269BDE990000EDAD /* Checklist.swift */,
+				DD425B7D2696D5DB006DBFCA /* ChecklistItem.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		DDA72DED269DAF58002C598E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				DD425B6D2695C63A006DBFCA /* ChecklistViewController.swift */,
 				DD11C62A269B1C260000EDAD /* AllListsViewController.swift */,
 				DD11C62E269BEB7C0000EDAD /* ListDetailViewController.swift */,
-				DD425B6F2695C63A006DBFCA /* Main.storyboard */,
 				DD425B7F26970B5C006DBFCA /* AddItemViewController.swift */,
-				DD11C62C269BDE990000EDAD /* Checklist.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DDA72DEE269DAF78002C598E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD425B6F2695C63A006DBFCA /* Main.storyboard */,
 				DD425B722695C63B006DBFCA /* Assets.xcassets */,
 				DD425B742695C63B006DBFCA /* LaunchScreen.storyboard */,
-				DD425B772695C63B006DBFCA /* Info.plist */,
-				DD425B7D2696D5DB006DBFCA /* ChecklistItem.swift */,
 			);
-			path = Checklists;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

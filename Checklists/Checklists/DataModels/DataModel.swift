@@ -22,6 +22,7 @@ class DataModel {
     init() {
         loadChecklists()
         registerDefaults()
+        handleFirstTime()
     }
     
     func documentsDirectory() -> URL {
@@ -56,7 +57,19 @@ class DataModel {
     }
     
     func registerDefaults() {
-        let dictionary = ["ChecklistsIndex" : -1]
+        let dictionary = ["ChecklistsIndex" : -1, "FirstTime" : true] as [String : Any]
         UserDefaults.standard.register(defaults: dictionary)
+    }
+    
+    func handleFirstTime() {
+        let userDefaults = UserDefaults.standard
+        let firstTime = userDefaults.bool(forKey: "FirstTime")
+        
+        if firstTime {
+            let checklist = Checklist(name: "Example List")
+            lists.append(checklist)
+            indexOfSelectedChecklist = 0
+            userDefaults.set(false, forKey: "FirstTime")
+        }
     }
 }
