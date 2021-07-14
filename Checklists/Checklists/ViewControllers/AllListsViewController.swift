@@ -7,30 +7,24 @@
 
 import UIKit
 
+// TODO: - checklist안을 수정할때말고, list자체를 작성할때 엔터로 작성이안됨
+
 class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
-        let newRowIndex = dataModel.lists.count
         dataModel.lists.append(checklist)
-
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
-
+        dataModel.sortChecklist()
+        tableView.reloadData()
         navigationController?.popViewController(animated: true)
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist) {
-        if let index = dataModel.lists.firstIndex(of: checklist) {
-            let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) {
-              cell.textLabel!.text = checklist.name
-            }
-          }
-          navigationController?.popViewController(animated: true)
+        dataModel.sortChecklist()
+        tableView.reloadData()
+        navigationController?.popViewController(animated: true)
     }
     
     let cellIdentifier = "ChecklistCell"
@@ -39,13 +33,18 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         navigationController?.navigationBar.prefersLargeTitles = true
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,13 +82,37 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         return dataModel.lists.count
     }
 
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+//        cell.textLabel!.text = dataModel.lists[indexPath.row].name
+//        print(indexPath)
+//        cell.accessoryType = .detailDisclosureButton
+//        // Configure the cell...
+//
+//        return cell
+//    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel!.text = dataModel.lists[indexPath.row].name
-        print(indexPath)
+        let cell: UITableViewCell
+        if let tmp = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) {
+            cell = tmp
+            print(tmp)
+        } else {
+            print(1)
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
+        }
+        let checklist = dataModel.lists[indexPath.row]
+        cell.textLabel!.text = checklist.name
         cell.accessoryType = .detailDisclosureButton
-        // Configure the cell...
-
+        let count = checklist.countUncheckedItems()
+        let detailTextLabelText: String
+        if checklist.items.count == 0 {
+            detailTextLabelText = "(NO Items)"
+        } else {
+            detailTextLabelText = count == 0 ? "All Done" : "\(count) remaining"
+        }
+        cell.detailTextLabel!.text = detailTextLabelText
+        
         return cell
     }
 

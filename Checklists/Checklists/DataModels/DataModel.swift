@@ -20,6 +20,7 @@ class DataModel {
         
     }
     init() {
+        print(documentsDirectory())
         loadChecklists()
         registerDefaults()
         handleFirstTime()
@@ -36,6 +37,7 @@ class DataModel {
     
     func saveChecklists() {
         let encoder = PropertyListEncoder()
+        sortChecklist()
         do {
             let data = try encoder.encode(lists)
             try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
@@ -70,6 +72,13 @@ class DataModel {
             lists.append(checklist)
             indexOfSelectedChecklist = 0
             userDefaults.set(false, forKey: "FirstTime")
+        }
+    }
+    
+    func sortChecklist() {
+        lists.sort() {
+//            $0.name.localizedCompare($1.name) == .orderedAscending
+            $0.name < $1.name
         }
     }
 }
