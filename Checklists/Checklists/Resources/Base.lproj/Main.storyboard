@@ -71,6 +71,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
+                                                        <action selector="done" destination="bsf-UM-5pT" eventType="editingDidEndOnExit" id="Bcn-Xr-qYO"/>
                                                         <outlet property="delegate" destination="bsf-UM-5pT" id="rAv-Nt-Phb"/>
                                                     </connections>
                                                 </textField>

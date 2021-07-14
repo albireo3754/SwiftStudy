@@ -7,8 +7,6 @@
 
 import UIKit
 
-// TODO: - checklist안을 수정할때말고, list자체를 작성할때 엔터로 작성이안됨
-
 class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
         navigationController?.popViewController(animated: true)
