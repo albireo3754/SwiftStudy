@@ -8,6 +8,7 @@
 import UIKit
 
 protocol AddItemViewControllerDelegate: AnyObject {
+    
     func itemDetailViewControllerDidCancel(_ controller: AddItemViewController)
     func itemDetailViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
     func itemDetailViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
@@ -18,6 +19,8 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var shouldRemindSwitch: UISwitch!
+    @IBOutlet weak var datePicker: UIDatePicker!
     weak var delegate: AddItemViewControllerDelegate?
     var itemToEdit: ChecklistItem?
     
@@ -30,6 +33,8 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
             title = "Edit Item"
             textField.text = item.text
             doneBarButton.isEnabled = true
+            shouldRemindSwitch.isOn = item.shouldRemind
+            datePicker.date = item.dueDate
             }
         }
     override func viewWillAppear(_ animated: Bool) {
@@ -56,10 +61,16 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func done() {
         if let item = itemToEdit {
             item.text = textField.text!
+            item.dueDate = datePicker.date
+            item.shouldRemind = shouldRemindSwitch.isOn
+            item.scheduleNotification()
             delegate?.itemDetailViewController(self, didFinishEditing: item)
         } else {
             let item = ChecklistItem()
             item.text = textField.text!
+            item.dueDate = datePicker.date
+            item.shouldRemind = shouldRemindSwitch.isOn
+            item.scheduleNotification()
             delegate?.itemDetailViewController(self, didFinishAdding: item)
         }
     }
@@ -75,6 +86,14 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         doneBarButton.isEnabled = false
         return true
+    }
+    @IBAction func shouldRemindToggled(_ sender: UISwitch) {
+        textField.resignFirstResponder()
+        if sender.isOn {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.sound, .alert]) { _, _ in
+            }
+        }
     }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
