@@ -19,7 +19,18 @@
 		DD425B7E2696D5DB006DBFCA /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD425B7D2696D5DB006DBFCA /* ChecklistItem.swift */; };
 		DD425B8026970B5C006DBFCA /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD425B7F26970B5C006DBFCA /* AddItemViewController.swift */; };
 		DDA72DEA269C5752002C598E /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA72DE9269C5752002C598E /* DataModel.swift */; };
+		DDC286B026A9416000345A82 /* ChecklistsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC286AF26A9416000345A82 /* ChecklistsTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDC286B126A9416000345A82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD425B5E2695C63A006DBFCA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD425B652695C63A006DBFCA;
+			remoteInfo = Checklists;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DD11C62A269B1C260000EDAD /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
@@ -36,10 +47,19 @@
 		DD425B7D2696D5DB006DBFCA /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		DD425B7F26970B5C006DBFCA /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		DDA72DE9269C5752002C598E /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		DDC286AD26A9416000345A82 /* ChecklistsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChecklistsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC286AF26A9416000345A82 /* ChecklistsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DD425B632695C63A006DBFCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC286AA26A9416000345A82 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				DD425B682695C63A006DBFCA /* Checklists */,
+				DDC286AE26A9416000345A82 /* ChecklistsTests */,
 				DD425B672695C63A006DBFCA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				DD425B662695C63A006DBFCA /* Checklists.app */,
+				DDC286AD26A9416000345A82 /* ChecklistsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +139,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		DDC286AE26A9416000345A82 /* ChecklistsTests */ = {
+			isa = PBXGroup;
+			children = (
+				DDC286AF26A9416000345A82 /* ChecklistsTests.swift */,
+			);
+			path = ChecklistsTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,6 +167,24 @@
 			productReference = DD425B662695C63A006DBFCA /* Checklists.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DDC286AC26A9416000345A82 /* ChecklistsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDC286B526A9416000345A82 /* Build configuration list for PBXNativeTarget "ChecklistsTests" */;
+			buildPhases = (
+				DDC286A926A9416000345A82 /* Sources */,
+				DDC286AA26A9416000345A82 /* Frameworks */,
+				DDC286AB26A9416000345A82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDC286B226A9416000345A82 /* PBXTargetDependency */,
+			);
+			name = ChecklistsTests;
+			productName = ChecklistsTests;
+			productReference = DDC286AD26A9416000345A82 /* ChecklistsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,6 +197,10 @@
 				TargetAttributes = {
 					DD425B652695C63A006DBFCA = {
 						CreatedOnToolsVersion = 13.0;
+					};
+					DDC286AC26A9416000345A82 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = DD425B652695C63A006DBFCA;
 					};
 				};
 			};
@@ -166,6 +218,7 @@
 			projectRoot = "";
 			targets = (
 				DD425B652695C63A006DBFCA /* Checklists */,
+				DDC286AC26A9416000345A82 /* ChecklistsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -178,6 +231,13 @@
 				DD425B762695C63B006DBFCA /* LaunchScreen.storyboard in Resources */,
 				DD425B732695C63B006DBFCA /* Assets.xcassets in Resources */,
 				DD425B712695C63A006DBFCA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC286AB26A9416000345A82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +260,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DDC286A926A9416000345A82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDC286B026A9416000345A82 /* ChecklistsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDC286B226A9416000345A82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD425B652695C63A006DBFCA /* Checklists */;
+			targetProxy = DDC286B126A9416000345A82 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DD425B6F2695C63A006DBFCA /* Main.storyboard */ = {
@@ -396,6 +472,52 @@
 			};
 			name = Release;
 		};
+		DDC286B326A9416000345A82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6785P7H4GT;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = albireo3754.github.ChecklistsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Checklists.app/Checklists";
+			};
+			name = Debug;
+		};
+		DDC286B426A9416000345A82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6785P7H4GT;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = albireo3754.github.ChecklistsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Checklists.app/Checklists";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -413,6 +535,15 @@
 			buildConfigurations = (
 				DD425B7B2695C63B006DBFCA /* Debug */,
 				DD425B7C2695C63B006DBFCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDC286B526A9416000345A82 /* Build configuration list for PBXNativeTarget "ChecklistsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC286B326A9416000345A82 /* Debug */,
+				DDC286B426A9416000345A82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

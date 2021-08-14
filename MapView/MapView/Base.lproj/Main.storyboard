@@ -25,6 +25,9 @@
                                     <segment title="네이버"/>
                                     <segment title="카카오"/>
                                 </segments>
+                                <connections>
+                                    <action selector="sgChangeLocation:" destination="BYZ-38-t0r" eventType="valueChanged" id="j9x-3P-x4y"/>
+                                </connections>
                             </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bmg-20-wow">
                                 <rect key="frame" x="16" y="59" width="288" height="444"/>
@@ -48,6 +51,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="lblLocationInfo1" destination="Qk8-N4-1QJ" id="K0G-Ys-I1P"/>
+                        <outlet property="lblLocationInfo2" destination="wvG-E3-qoh" id="rse-bQ-39c"/>
+                        <outlet property="myMap" destination="bmg-20-wow" id="g1U-i9-hh2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
